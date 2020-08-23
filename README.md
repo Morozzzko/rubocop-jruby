@@ -4,7 +4,7 @@ This is a collection of Rubocop extensions focused on enforcing specific JRuby p
 
 Right now the idea is to focus on three tasks:
 
-* Make sure people don't put .jar to their `require`, as it is just redundant
+* Make sure people don't put .jar to their `require`, as it is just redundant (`JRuby/JarExtensionInRequire`)
 * Enforce consistent Java class reference, e.g. com::something::ClassName vs Java::ComSomething::ClassName
 * Help enforce `snake_case` over `CamelCase` when using Java's classes
 

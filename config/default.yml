@@ -1,1 +1,7 @@
 # Write it!
+
+JRuby/JarExtensionInRequire:
+  Description: |
+    Makes sure that you don't append .jar extensions when using `require` to load a jar
+  Enabled: true
+  VersionAdded: '0.88'
