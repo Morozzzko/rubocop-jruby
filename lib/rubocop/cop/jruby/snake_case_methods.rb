@@ -1,51 +1,29 @@
 # frozen_string_literal: true
 
-# TODO: when finished, run `rake generate_cops_documentation` to update the docs
 module RuboCop
   module Cop
     module JRuby
-      # TODO: Write cop description and example of bad / good code. For every
-      # `SupportedStyle` and unique configuration, there needs to be examples.
-      # Examples must have valid Ruby syntax. Do not use upticks.
+      # This cop enforces that all methods are in snake_case
+      # It actually overlaps in functionality with Style/MethodName, hence it is disabled by default
+      # Yet, it was written explicitly for easier refactoring and _automatic rewrite_
+      # If you use it with rubocop -A, it'll automatically update your code.
+      # It will simplify refactoring
       #
-      # @example EnforcedStyle: bar (default)
-      #   # Description of the `bar` style.
+      # @example Enabled: true
+      #   # bad
+      #   getName
       #
       #   # bad
-      #   bad_bar_method
-      #
-      #   # bad
-      #   bad_bar_method(args)
+      #   getName(args)
       #
       #   # good
-      #   good_bar_method
+      #   get_name
       #
       #   # good
-      #   good_bar_method(args)
-      #
-      # @example EnforcedStyle: foo
-      #   # Description of the `foo` style.
-      #
-      #   # bad
-      #   bad_foo_method
-      #
-      #   # bad
-      #   bad_foo_method(args)
-      #
-      #   # good
-      #   good_foo_method
-      #
-      #   # good
-      #   good_foo_method(args)
+      #   get_name(args)
       #
       class SnakeCaseMethods < Base
         extend AutoCorrector
-        # TODO: Implement the cop in here.
-        #
-        # In many cases, you can use a node matcher for matching node pattern.
-        # See https://github.com/rubocop-hq/rubocop-ast/blob/master/lib/rubocop/node_pattern.rb
-        #
-        # For example
         MSG = 'Use snake_case method names when referencing Java code. Replace `#%<method_name>s` with `#%<suggested_method_name>s`'
 
         def camel_case?(node)
