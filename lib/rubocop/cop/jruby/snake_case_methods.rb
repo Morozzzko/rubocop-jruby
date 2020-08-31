@@ -39,6 +39,7 @@ module RuboCop
       #   good_foo_method(args)
       #
       class SnakeCaseMethods < Base
+        extend AutoCorrector
         # TODO: Implement the cop in here.
         #
         # In many cases, you can use a node matcher for matching node pattern.
@@ -57,14 +58,17 @@ module RuboCop
 
         def on_send(node)
           bad_method?(node) do |method_name|
-            add_offense(
-              node,
-              message: format(
-                MSG,
-                method_name: method_name,
-                suggested_method_name: underscore(method_name.to_s)
-              )
+            suggested_method_name = underscore(method_name.to_s)
+
+            message = format(
+              MSG,
+              method_name: method_name,
+              suggested_method_name: suggested_method_name
             )
+
+            add_offense(node, message: message) do |corrector|
+              corrector.replace(node.loc.selector, suggested_method_name)
+            end
           end
         end
 

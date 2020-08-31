@@ -32,6 +32,19 @@ RSpec.describe RuboCop::Cop::JRuby::SnakeCaseMethods do
     RUBY
   end
 
+  describe 'correction' do
+    it 'replaces camel case with snake case' do
+      expect_offense(<<~RUBY)
+        obj.getPaid(1, :getPaid)
+        ^^^^^^^^^^^^^^^^^^^^^^^^ Use snake_case method names when referencing Java code. Replace `#getPaid` with `#get_paid`
+      RUBY
+
+      expect_correction(<<~RUBY)
+        obj.get_paid(1, :getPaid)
+      RUBY
+    end
+  end
+
   describe 'exceptions' do
     let(:config) { RuboCop::Config.new }
 
