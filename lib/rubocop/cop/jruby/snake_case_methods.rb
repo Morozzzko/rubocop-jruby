@@ -24,6 +24,8 @@ module RuboCop
       #
       class SnakeCaseMethods < Base
         extend AutoCorrector
+        include IgnoredPattern
+
         MSG = 'Use snake_case method names when referencing Java code. Replace `#%<method_name>s` with `#%<suggested_method_name>s`'
 
         def camel_case?(node)
@@ -37,6 +39,8 @@ module RuboCop
         def on_send(node)
           bad_method?(node) do |method_name|
             suggested_method_name = underscore(method_name.to_s)
+
+            return if matches_ignored_pattern?(method_name)
 
             message = format(
               MSG,

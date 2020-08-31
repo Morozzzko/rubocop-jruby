@@ -45,12 +45,18 @@ RSpec.describe RuboCop::Cop::JRuby::SnakeCaseMethods do
     end
   end
 
-  describe 'exceptions' do
-    let(:config) { RuboCop::Config.new }
+  describe 'IgnoredPatterns for method names' do
+    let(:cop_config) do
+      {
+        'IgnoredPatterns' => [
+          'Types'
+        ]
+      }
+    end
 
-    it 'does not register an offense on an exception' do
-      pending 'Not implemented yet'
+    let(:config) { RuboCop::Config.new('JRuby/SnakeCaseMethods' => cop_config) }
 
+    it 'does not register an offense' do
       expect_no_offenses(<<~RUBY)
         Dry.Types
       RUBY
