@@ -58,7 +58,7 @@ RSpec.describe RuboCop::Cop::JRuby::SnakeCaseMethods do
 
     it 'does not register an offense' do
       expect_no_offenses(<<~RUBY)
-        Dry.Types
+        include Dry.Types(default: :nominal)
       RUBY
     end
   end
