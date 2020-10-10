@@ -5,3 +5,13 @@ JRuby/JarExtensionInRequire:
     Makes sure that you don't append .jar extensions when using `require` to load a jar
   Enabled: true
   VersionAdded: '0.88'
+
+JRuby/SnakeCaseMethods:
+  Description: |
+      This cop enforces that all methods are in snake_case
+      It actually overlaps in functionality with Style/MethodName, hence it is disabled by default
+      Yet, it was written explicitly for easier refactoring and _automatic rewrite_
+      If you use it with rubocop -A, it'll automatically update your code.
+      It will simplify refactoring
+  Enabled: false
+  VersionAdded: '0.88'
